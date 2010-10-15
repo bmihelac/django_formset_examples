@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Example 1</h1>
+  <pre><code>ShirtColorPriceFormset = formset_factory(ShirtColorPriceForm, extra=3)</code></pre>
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <table>
+        {% for form in formset.forms %}
+          <tr>
+            <td>
+              {{ form.as_p }}
+            </td>
+          </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" />
+  </form>  
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Example 2</h1>
+  <p>
+    Use initial data.
+  </p>
+  <pre><code>formset = ShirtColorPriceFormset(initial=[
+      {'shirt_id': 1, 'color': 'red'},
+      {'shirt_id': 2, 'color': 'blue'},
+  ])</code></pre>
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <table>
+        {% for form in formset.forms %}
+          <tr>
+            <td>
+              {{ form.as_p }}
+            </td>
+          </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" />
+  </form>  
+{% endblock content %}
