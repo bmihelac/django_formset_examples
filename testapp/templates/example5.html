@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Example 5 - Model formsets with initial data</h1>
+  <pre><code></code></pre>
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <table>
+        {% for form in formset.forms %}
+          <tr>
+            <td>
+              {{ form.as_p }}
+            </td>
+          </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" />
+  </form>  
+{% endblock content %}

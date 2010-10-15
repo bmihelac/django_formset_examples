@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Example 6 - Model formsets with initial data and custom model form</h1>
+  <p>
+    <code>Price</code> is not required. 
+    Set <em>widgets</em> for <code>shirt</code> and <code>color</code> to <code>HiddenInput</code>.
+  </p>
+  <p>
+    TODO: How to display shirt and color names?
+  </p>
+  <pre><code></code></pre>
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <table>
+        {% for form in formset.forms %}
+          <tr>
+            <td>
+              {{ form.shirt }}
+              {{ form.color }}
+              {{ form.id }}
+              Shirt: {{ form.initial.shirt }}
+              Color: {{ form.initial.color }}
+              {{ form.price }}
+            </td>
+          </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" />
+  </form>  
+{% endblock content %}
