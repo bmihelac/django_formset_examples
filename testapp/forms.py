@@ -69,7 +69,7 @@ class ShirtColorPriceModelFormset(forms.models.BaseInlineFormSet):
             instance = self.get_queryset().get(color=related_object)
         except ShirtColorPrice.DoesNotExist, e:
             instance = None
-        kwargs['initial'] = {'color_id': related_object.id}
+        kwargs['initial'] = {'color': related_object.id}
         kwargs['instance'] = instance
         form = forms.formsets.BaseFormSet._construct_form(self, i, **kwargs)
         setattr(form.instance, self.fk.get_attname(), self.instance.pk)
