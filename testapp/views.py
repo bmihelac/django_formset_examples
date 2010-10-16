@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.forms.formsets import formset_factory
-from django.forms.models import modelformset_factory
+from django.forms.models import modelformset_factory, inlineformset_factory
 
 from models import ShirtColorPrice, Shirt, Color
 from forms import ShirtColorPriceForm, ShirtColorPriceForm2, ShirtColorPriceModelForm, \
@@ -94,7 +94,6 @@ def example6(request, **kwargs):
     extra_forms_num = Shirt.objects.count() * Color.objects.count() - existing_forms_num
     ShirtColorPriceFormset = modelformset_factory(ShirtColorPrice, 
             form=ShirtColorPriceModelForm, 
-            formset=ShirtColorPriceModelFormset,
             extra=extra_forms_num,
             can_delete=True)
     if request.method == 'POST':
@@ -116,5 +115,24 @@ def example6(request, **kwargs):
                     })
         formset = ShirtColorPriceFormset(initial=initial_data)
     ctx['formset'] = formset
-    return render_to_response('example6.html', ctx)    
+    return render_to_response('example6.html', ctx)
+    
+def example7(request, **kwargs):
+    ctx = RequestContext(request)
+    shirt = Shirt.objects.all()[0]
+    ShirtColorPriceFormset = inlineformset_factory(Shirt, ShirtColorPrice,
+                                formset=ShirtColorPriceModelFormset,
+                                form=ShirtColorPriceModelForm,
+                                extra=0
+                                )
+    if request.method == 'POST':
+        formset = ShirtColorPriceFormset(request.POST, instance=shirt)
+        if formset.is_valid():
+            formset.save()
+            ctx['cleaned_data'] = formset.cleaned_data
+            return render_to_response('display_cleaned_data.html', ctx)
+    else:
+        formset = ShirtColorPriceFormset(instance=shirt)
+    ctx['formset'] = formset
+    return render_to_response('example7.html', ctx)
     

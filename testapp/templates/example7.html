@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Example 7 - inline formsets</h1>
+  <pre><code></code></pre>
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <table>
+        {% for form in formset.forms %}
+          <tr>
+            <td>
+              {{form.as_p}}
+              
+              {# {{ form.id }} #}
+              {# {{ form.shirt }} #}
+              {# {{ form.color }} #}
+              {# Color: {{ form.initial.color }} #}
+              {# {{ form.price }} #}
+            </td>
+          </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" />
+  </form>  
+{% endblock content %}

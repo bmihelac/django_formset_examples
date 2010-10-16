@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     (r'^example4/', 'testapp.views.example4'),
     (r'^example5/', 'testapp.views.example5'),
     (r'^example6/', 'testapp.views.example6'),
+    (r'^example7/', 'testapp.views.example7'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
