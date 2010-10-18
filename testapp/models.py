@@ -21,5 +21,6 @@ class ShirtColorPrice(models.Model):
     price = models.DecimalField(max_digits=9, decimal_places=2)
     
     def __unicode__(self):
-        return u"Price for %s %s is %s" % (self.color, self.shirt, self.price)
+        # return u"Price for %s %s is %s" % (self.color, self.shirt, self.price)
+        return u"ShirtColorPrice"
     
