@@ -1,0 +1,1 @@
+contrib.admin.InlineAdminFormSet __iter__ returns InlineAdminForm wrapper sorted by first existing then new.

@@ -35,8 +35,8 @@ class ShirtColorPriceModelForm(forms.ModelForm):
         # NOTE: there is bug in Django 1.2 that would not allow setting widgets
         # http://code.djangoproject.com/ticket/13095
         widgets = {
-            'shirt': forms.widgets.HiddenInput(),
-            'color': forms.widgets.HiddenInput(),
+            # 'shirt': forms.widgets.HiddenInput(),
+            # 'color': forms.widgets.HiddenInput(),
         }
 
 class ShirtColorPriceModelFormset(forms.models.BaseInlineFormSet):
@@ -50,6 +50,7 @@ class ShirtColorPriceModelFormset(forms.models.BaseInlineFormSet):
             self.initial_form_count = 0
             self.extra = self.total_related_objects_num
         super(ShirtColorPriceModelFormset, self).__init__(*args, **kwargs)
+        self.max_num =  self.total_related_objects_num
         
     def get_related_queryset(self):
         return Color.objects.all()

@@ -19,3 +19,7 @@ class ShirtColorPrice(models.Model):
     shirt = models.ForeignKey(Shirt)
     color = models.ForeignKey(Color)
     price = models.DecimalField(max_digits=9, decimal_places=2)
+    
+    def __unicode__(self):
+        return u"Price for %s %s is %s" % (self.color, self.shirt, self.price)
+    
